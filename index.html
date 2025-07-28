@@ -5,7 +5,6 @@
   <title>For My Sayang 💌</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
 
     body {
       margin: 0; padding: 0;
@@ -59,7 +58,7 @@
 <body>
 
   <!-- Background Music -->
-  <audio id="bgMusic" loop>
+  <audio id="bgMusic" autoplay muted loop>
     <source src="https://ia802800.us.archive.org/12/items/nadhif-bergemar/Nadhif%20Basmalah%20-%20bergemar%20sampai%20selamanya.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -89,26 +88,31 @@
     <h1>✨ HAPPY NATIONAL GIRLFRIEND DAY SAYANGGG 💕</h1>
   </div>
 
-<script>
-  document.getElementById('enterBtn').onclick = function() {
-    document.getElementById('intro').style.opacity = 0;
-    document.getElementById('bgMusic').play(); // mainkan lagu bila tekan
-    setTimeout(function(){
-      document.getElementById('intro').style.display = 'none';
-      document.getElementById('content').style.visibility = 'visible';
-      document.getElementById('content').style.opacity = 1;
-    }, 1000);
-  };
+  <script>
+    document.getElementById('enterBtn').onclick = function() {
+      const music = document.getElementById('bgMusic');
+      music.muted = false;
+      music.play().catch(e => {
+        console.log("Autoplay failed 😢", e);
+      });
 
-  document.getElementById('nextBtn').onclick = function() {
-    document.getElementById('content').style.opacity = 0;
-    setTimeout(function(){
-      document.getElementById('content').style.display = 'none';
-      document.getElementById('final').style.visibility = 'visible';
-      document.getElementById('final').style.opacity = 1;
-    }, 1000);
-  };
-</script>
+      document.getElementById('intro').style.opacity = 0;
+      setTimeout(function(){
+        document.getElementById('intro').style.display = 'none';
+        document.getElementById('content').style.visibility = 'visible';
+        document.getElementById('content').style.opacity = 1;
+      }, 1000);
+    };
+
+    document.getElementById('nextBtn').onclick = function() {
+      document.getElementById('content').style.opacity = 0;
+      setTimeout(function(){
+        document.getElementById('content').style.display = 'none';
+        document.getElementById('final').style.visibility = 'visible';
+        document.getElementById('final').style.opacity = 1;
+      }, 1000);
+    };
+  </script>
 
 </body>
 </html>
