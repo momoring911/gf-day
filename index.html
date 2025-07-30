@@ -3,159 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <title>For My Sayang 💌</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand&display=swap');
-
-    * {
-      box-sizing: border-box;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: 'Dancing Script', cursive;
-      background: linear-gradient(135deg, #fff1f5, #ffe3ec);
+      background: linear-gradient(135deg, #fff5f8, #fceef3);
+      color: #333;
       text-align: center;
-      overflow-x: hidden;
     }
-
     .section {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      transition: all 1s ease;
+      flex-direction: column;
+      transition: opacity 1s;
     }
-
-    #content, #final {
+    #intro { background: transparent; }
+    #content, #final { opacity: 0; visibility: hidden; }
+    button {
+      padding: 15px 30px;
+      border: none;
+      background: #ff8da1;
+      color: #fff;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+      font-family: 'Quicksand', sans-serif;
+    }
+    button:hover { background: #ff7390; }
+    .letter {
+      max-width: 80%;
+      margin: auto;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #d4597e;
+    }
+    audio {
       display: none;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #d84c75;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #333;
-      max-width: 700px;
-      line-height: 1.6;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      font-family: 'Quicksand', sans-serif;
-      background-color: #ff7d9c;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #f96086;
-    }
-
-    video {
-      max-width: 90%;
-      border-radius: 16px;
-      margin-top: 20px;
-    }
-
-    /* Falling sakura petals */
-    .petal {
-      position: fixed;
-      top: -40px;
-      width: 30px;
-      height: 30px;
-      background-image: url('https://i.ibb.co/XF2JzTf/sakura.png');
-      background-size: cover;
-      z-index: 999;
-      animation: fall linear infinite;
-      opacity: 0.9;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
+    /* Responsive fix */
+    @media (max-width: 768px) {
+      .letter {
+        font-size: 1rem;
+        padding: 15px;
       }
-    }
-
-    @media screen and (max-width: 600px) {
-      h1 { font-size: 1.8rem; }
-      p { font-size: 1rem; }
-      button { font-size: 0.9rem; padding: 10px 20px; }
+      h1 {
+        font-size: 1.8rem;
+      }
+      button {
+        font-size: 1rem;
+        padding: 12px 25px;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="https://ia802800.us.archive.org/12/items/nadhif-bergemar/Nadhif%20Basmalah%20-%20bergemar%20sampai%20selamanya.mp3" type="audio/mp3">
+  <audio id="bgMusic" autoplay muted loop>
+    <source src="https://ia802800.us.archive.org/12/items/nadhif-bergemar/Nadhif%20Basmalah%20-%20bergemar%20sampai%20selamanya.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
 
-  <!-- Falling Petals Script -->
-  <script>
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = (3 + Math.random() * 2) + 's';
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 5000);
-    }
-    setInterval(createPetal, 300);
-  </script>
-
-  <!-- Intro -->
+  <!-- Intro Splash -->
   <div id="intro" class="section">
-    <h1>Hi Sayang 💖</h1>
-    <p>Click to enter your surprise gift 🎁</p>
-    <button onclick="showContent()">Click Here Sayang</button>
+    <h1>hii sayang 💌</h1>
+    <p>rabbit and flowers are waiting~~~</p>
+    <button id="enterBtn">click here sayang 🙆🏻‍♂️</button>
   </div>
 
-  <!-- Love Letter -->
+  <!-- Letter Section -->
   <div id="content" class="section">
-    <h1>Happy National Girlfriend Day 🥺</h1>
-    <p>
-      You're the most precious person in my life.<br>
-      Thank you for always being here for me even from afar.<br>
-      I just want you to know how much I love and appreciate you.<br>
-      Please stay healthy and keep smiling always 🥰
-    </p>
-    <button onclick="showVideo()">Continue</button>
+    <div class="letter">
+      <p>Happy National Girlfriend Day Cantik Saya hehe &lt;3.</p>
+      <p>You’ve been my strength, my comfort, my biggest support tauu 🥰.</p>
+      <p>Sadly we kinda far right now and tak sempat jumpa pun rituu 🥺</p>
+      <p>Thank you for staying strong, for being patient, for being you. Hoping you always sihat and can smile brightest ever and no more sed sed anymore.</p>
+      <p><strong>I love you sayang and always loving you forever hehe.</strong></p>
+      <p style="margin-top:30px;">&mdash; Your clingy and forever Duan 💖</p>
+      <button id="nextBtn">Continue</button>
+    </div>
   </div>
 
-  <!-- Video -->
+  <!-- Final Screen -->
   <div id="final" class="section">
-    <h1>I Love You So Much Sayang 🫶🏻</h1>
-    <video controls>
+    <h1>✨ HAPPY NATIONAL GIRLFRIEND DAY SAYANGGG 💕</h1>
+
+    <p style="max-width: 90%; font-size: 1.1rem; margin: 20px auto; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;">
+      Eventhough Its just a simple one, hope you will love it. Love You So Much Sayang🫶🏻 :)
+    </p>
+
+    <video controls width="80%" style="border-radius: 20px; max-width: 700px;">
       <source src="https://momoring911.github.io/gf-day/National%20Girlfriend%20Day.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
 
   <script>
-    function showContent() {
-      document.getElementById('intro').style.display = 'none';
-      document.getElementById('content').style.display = 'flex';
-    }
+    const enterBtn = document.getElementById('enterBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const intro = document.getElementById('intro');
+    const content = document.getElementById('content');
+    const final = document.getElementById('final');
+    const music = document.getElementById('bgMusic');
 
-    function showVideo() {
-      document.getElementById('content').style.display = 'none';
-      document.getElementById('final').style.display = 'flex';
-    }
+    enterBtn.addEventListener('click', () => {
+      intro.style.opacity = 0;
+      intro.style.visibility = 'hidden';
+      content.style.opacity = 1;
+      content.style.visibility = 'visible';
+      music.muted = false;
+    });
+
+    nextBtn.addEventListener('click', () => {
+      content.style.opacity = 0;
+      content.style.visibility = 'hidden';
+      final.style.opacity = 1;
+      final.style.visibility = 'visible';
+    });
   </script>
-
 </body>
 </html>
