@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>For My Sayang 💌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
 
@@ -14,58 +15,63 @@
       text-align: center;
     }
     .section {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
       transition: opacity 1s;
     }
     #intro { background: transparent; }
     #content, #final { opacity: 0; visibility: hidden; }
     button {
-      padding: 15px 30px;
+      padding: 12px 25px;
       border: none;
       background: #ff8da1;
       color: #fff;
-      font-size: 1.2rem;
+      font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: background 0.3s;
       font-family: 'Quicksand', sans-serif;
+      max-width: 90vw;
     }
     button:hover { background: #ff7390; }
     .letter {
-      max-width: 80%;
-      margin: auto;
-      font-size: 1.2rem;
-      line-height: 1.8;
+      width: 100%;
+      max-width: 700px;
+      font-size: 1.1rem;
+      line-height: 1.7;
       padding: 20px;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #d4597e;
     }
     audio {
       display: none;
     }
+    video {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 20px;
+    }
 
-    /* Responsive fix */
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
       .letter {
         font-size: 1rem;
-        padding: 15px;
-      }
-      h1 {
-        font-size: 1.8rem;
       }
       button {
-        font-size: 1rem;
-        padding: 12px 25px;
+        font-size: 0.95rem;
+        padding: 10px 20px;
       }
     }
   </style>
@@ -80,9 +86,9 @@
 
   <!-- Intro Splash -->
   <div id="intro" class="section">
-    <h1>hii sayang 💌</h1>
-    <p>rabbit and flowers are waiting~~~</p>
-    <button id="enterBtn">click here sayang 🙆🏻‍♂️</button>
+    <h1>Hii My Lovely Sayang! 💌</h1>
+    <p>Take a deep breath… <br>Click to enter your little surprise 🥹</p>
+    <button id="enterBtn">Click Here Sayang🙆🏻‍♂️</button>
   </div>
 
   <!-- Letter Section -->
@@ -102,38 +108,37 @@
   <div id="final" class="section">
     <h1>✨ HAPPY NATIONAL GIRLFRIEND DAY SAYANGGG 💕</h1>
 
-    <p style="max-width: 90%; font-size: 1.1rem; margin: 20px auto; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;">
-      Eventhough Its just a simple one, hope you will love it. Love You So Much Sayang🫶🏻 :)
-    </p>
-
-    <video controls width="80%" style="border-radius: 20px; max-width: 700px;">
+    <video controls>
       <source src="https://momoring911.github.io/gf-day/National%20Girlfriend%20Day.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
 
+  <!-- Script -->
   <script>
-    const enterBtn = document.getElementById('enterBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const intro = document.getElementById('intro');
-    const content = document.getElementById('content');
-    const final = document.getElementById('final');
-    const music = document.getElementById('bgMusic');
-
-    enterBtn.addEventListener('click', () => {
-      intro.style.opacity = 0;
-      intro.style.visibility = 'hidden';
-      content.style.opacity = 1;
-      content.style.visibility = 'visible';
+    document.getElementById('enterBtn').onclick = function() {
+      const music = document.getElementById('bgMusic');
       music.muted = false;
-    });
+      music.play().catch(e => {
+        console.log("Autoplay failed 😢", e);
+      });
 
-    nextBtn.addEventListener('click', () => {
-      content.style.opacity = 0;
-      content.style.visibility = 'hidden';
-      final.style.opacity = 1;
-      final.style.visibility = 'visible';
-    });
+      document.getElementById('intro').style.opacity = 0;
+      setTimeout(function(){
+        document.getElementById('intro').style.display = 'none';
+        document.getElementById('content').style.visibility = 'visible';
+        document.getElementById('content').style.opacity = 1;
+      }, 1000);
+    };
+
+    document.getElementById('nextBtn').onclick = function() {
+      document.getElementById('content').style.opacity = 0;
+      setTimeout(function(){
+        document.getElementById('content').style.display = 'none';
+        document.getElementById('final').style.visibility = 'visible';
+        document.getElementById('final').style.opacity = 1;
+      }, 1000);
+    };
   </script>
 </body>
 </html>
