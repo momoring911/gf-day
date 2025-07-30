@@ -12,17 +12,29 @@
       background: linear-gradient(135deg, #fff5f8, #fceef3);
       color: #333;
       text-align: center;
+      overflow: hidden;
     }
     .section {
       height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0; left: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      transition: opacity 1s;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
     }
-    #intro { background: transparent; }
-    #content, #final { opacity: 0; visibility: hidden; }
+    .active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0px) !important;
+      z-index: 2;
+    }
+
     button {
       padding: 15px 30px;
       border: none;
@@ -36,6 +48,7 @@
       font-family: 'Quicksand', sans-serif;
     }
     button:hover { background: #ff7390; }
+
     .letter {
       max-width: 80%;
       margin: auto;
@@ -46,12 +59,20 @@
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
+
     h1 {
       font-size: 2.2rem;
       color: #d4597e;
     }
+
     audio {
       display: none;
+    }
+
+    video {
+      border-radius: 20px;
+      max-width: 700px;
+      width: 80%;
     }
   </style>
 </head>
@@ -64,7 +85,7 @@
   </audio>
 
   <!-- Intro Splash -->
-  <div id="intro" class="section">
+  <div id="intro" class="section active">
     <h1>Hii My Lovely Sayang! 💌</h1>
     <p>Take a deep breath… <br>Click to enter your little surprise 🥹</p>
     <button id="enterBtn">Click Here Sayang🙆🏻‍♂️</button>
@@ -76,7 +97,7 @@
       <p>Happy National Girlfriend Day Cantik Saya hehe &lt;3.</p>
       <p>You’ve been my strength, my comfort, my biggest support tauu 🥰.</p>
       <p>Sadly we kinda far right now and tak sempat jumpa pun rituu 🥺</p>
-      <p>Thank you for staying strong, for being patient, for being you. Hoping you always sihat and can smile brightest ever and no more sed sed anymore.</p>
+      <p>Thank you for staying strong, for being patient, for being you.</p>
       <p><strong>I love you sayang and always loving you forever hehe.</strong></p>
       <p style="margin-top:30px;">&mdash; Your clingy and forever Duan 💖</p>
       <button id="nextBtn">Continue</button>
@@ -86,38 +107,34 @@
   <!-- Final Screen -->
   <div id="final" class="section">
     <h1>✨ HAPPY NATIONAL GIRLFRIEND DAY SAYANGGG 💕</h1>
-
-    <video controls width="80%" style="border-radius: 20px; max-width: 700px;">
+    <video controls>
       <source src="https://momoring911.github.io/gf-day/National%20Girlfriend%20Day.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
 
-  <!-- Script -->
   <script>
+    function switchSection(currentId, nextId) {
+      const current = document.getElementById(currentId);
+      const next = document.getElementById(nextId);
+
+      current.classList.remove("active");
+      setTimeout(() => {
+        next.classList.add("active");
+      }, 300);
+    }
+
     document.getElementById('enterBtn').onclick = function() {
       const music = document.getElementById('bgMusic');
       music.muted = false;
-      music.play().catch(e => {
-        console.log("Autoplay failed 😢", e);
-      });
-
-      document.getElementById('intro').style.opacity = 0;
-      setTimeout(function(){
-        document.getElementById('intro').style.display = 'none';
-        document.getElementById('content').style.visibility = 'visible';
-        document.getElementById('content').style.opacity = 1;
-      }, 1000);
+      music.play().catch(e => console.log("Autoplay failed 😢", e));
+      switchSection('intro', 'content');
     };
 
     document.getElementById('nextBtn').onclick = function() {
-      document.getElementById('content').style.opacity = 0;
-      setTimeout(function(){
-        document.getElementById('content').style.display = 'none';
-        document.getElementById('final').style.visibility = 'visible';
-        document.getElementById('final').style.opacity = 1;
-      }, 1000);
+      switchSection('content', 'final');
     };
   </script>
+
 </body>
 </html>
