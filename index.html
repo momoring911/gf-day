@@ -83,17 +83,46 @@
     </div>
   </div>
 
- <!-- Final Screen -->
-<div id="final" class="section">
-  <h1>✨ HAPPY NATIONAL GIRLFRIEND DAY SAYANGGG 💕</h1>
+  <!-- Final Screen -->
+  <div id="final" class="section">
+    <h1>✨ HAPPY NATIONAL GIRLFRIEND DAY SAYANGGG 💕</h1>
 
-  <p style="max-width: 90%; font-size: 1.1rem; margin: 20px auto; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;">
-    Even though it’s just a simple one, I hope you’ll love it.<br>
-    <strong>I love you so much, sayang 🫶🏻 :)</strong>
-  </p>
+    <p style="max-width: 90%; font-size: 1.1rem; margin: 20px auto; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px;">
+      Even though it’s just a simple one, I hope you’ll love it.<br>
+      <strong>I love you so much, sayang 🫶🏻 :)</strong>
+    </p>
 
-  <video controls width="80%" style="border-radius: 20px; max-width: 700px;">
-    <source src="https://momoring911.github.io/gf-day/National%20Girlfriend%20Day.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+    <video controls width="80%" style="border-radius: 20px; max-width: 700px;">
+      <source src="https://momoring911.github.io/gf-day/National%20Girlfriend%20Day.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    document.getElementById('enterBtn').onclick = function() {
+      const music = document.getElementById('bgMusic');
+      music.muted = false;
+      music.play().catch(e => {
+        console.log("Autoplay failed 😢", e);
+      });
+
+      document.getElementById('intro').style.opacity = 0;
+      setTimeout(function(){
+        document.getElementById('intro').style.display = 'none';
+        document.getElementById('content').style.visibility = 'visible';
+        document.getElementById('content').style.opacity = 1;
+      }, 1000);
+    };
+
+    document.getElementById('nextBtn').onclick = function() {
+      document.getElementById('content').style.opacity = 0;
+      setTimeout(function(){
+        document.getElementById('content').style.display = 'none';
+        document.getElementById('final').style.visibility = 'visible';
+        document.getElementById('final').style.opacity = 1;
+      }, 1000);
+    };
+  </script>
+
+</body>
+</html>
